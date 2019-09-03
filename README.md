@@ -16,7 +16,7 @@ Finds restaurant menus near user
   * User can view other users reviews of restaurants.
   * App will be nicely styled.
   * Integrate API to return menu from selected restaurant.
-  * Integrate screen reader to verbalize menu for visually impaired users
+  * Integrate text reader to verbalize menu for visually impaired users
 
 |URL        | HTTP Verb | Action | Description       |
 |-----------|:---------:|:------:|:------------------|
