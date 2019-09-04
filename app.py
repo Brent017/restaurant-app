@@ -4,12 +4,15 @@ from flask_cors import CORS
 from flask_login import LoginManager
 import models
 
+from api.users import user
+# from api.restaurant import restaurant
+
 DEBUG = True
 PORT = 8000
 
 login_manager = LoginManager()
 
-app = Flask(__name__, static_url_path="", static_folder="static")
+app = Flask(__name__, static_url_path="")
 
 app.secret_key = 'AROEAING KHATEI'
 login_manager.init_app(app)
@@ -22,10 +25,10 @@ def load_user(userid):
 		return None
 
 CORS(user, origins=['http//localhost:3000'], supports_credentials=True)
-CORS(restaurant, origins=['http//localhost:3000'], supports_credentials=True)
+# CORS(restaurant, origins=['http//localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(user)
-app.register_blueprint(restaurant)
+# app.register_blueprint(restaurant)
 
 @app.before_request
 def before_request():
@@ -35,7 +38,8 @@ def before_request():
 
 @app.after_request
 def after_request(response):
-	d.db.close()
+	###Close the database connection after each request###
+	g.db.close()
 	return response
 
 app.route('/')
