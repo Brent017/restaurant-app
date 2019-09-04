@@ -23,6 +23,6 @@ class Restaurant(Model):
 
 def initialize():
 	DATABASE.connect()
-	DATABASE.create_tables([User, Restaurant] safe=True)
+	DATABASE.create_tables([User, Restaurant], safe=True)
 	print("TABLES CREATED")
 	DATABASE.close() 
