@@ -11,10 +11,10 @@ Finds restaurant menus near user
   * User will be able to delete a restaurant from their list.
 
 ### Stretch:
+  * App will be nicely styled.
   * User can upload photos of food.
   * User reviews of restaurants with full CRUD functionality.
   * User can view other users reviews of restaurants.
-  * App will be nicely styled.
   * Integrate API to return menu from selected restaurant.
   * Integrate text reader to verbalize menu for visually impaired users
 
