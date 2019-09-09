@@ -5,7 +5,7 @@ from flask_login import LoginManager
 import models
 
 from api.users import user
-# from api.restaurant import restaurant
+from api.restaurant import restaurant
 
 DEBUG = True
 PORT = 8000
@@ -24,11 +24,11 @@ def load_user(userid):
 	except models.DoesNotExist:
 		return None
 
-CORS(user, origins=['http//localhost:3000'], supports_credentials=True)
-# CORS(restaurant, origins=['http//localhost:3000'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(restaurant, origins=['http//localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(user)
-# app.register_blueprint(restaurant)
+app.register_blueprint(restaurant)
 
 @app.before_request
 def before_request():
