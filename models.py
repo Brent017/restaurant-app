@@ -3,7 +3,7 @@ from flask_login import UserMixin
 import os
 from playhouse.db_url import connect
 
-DATABASE = SqliteDatabase('restaurant.sqlite')
+DATABASE = SqliteDatabase('restaurants.sqlite')
 
 class User(UserMixin, Model):
 	username = CharField()
@@ -15,7 +15,10 @@ class User(UserMixin, Model):
 
 class Restaurant(Model):
 	restaurantId = IntegerField()
-	comments = CharField()
+	name = CharField()
+	cuisine = CharField()
+	address = CharField()
+	menu_url = CharField()
 	user = ForeignKeyField(User, backref='restaurant')
 
 	class Meta:
