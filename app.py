@@ -9,7 +9,7 @@ from api.restaurant import restaurant
 
 DEBUG = True
 PORT = 8000
-
+# print(PORT)
 login_manager = LoginManager()
 
 app = Flask(__name__, static_url_path="")
@@ -25,7 +25,7 @@ def load_user(userid):
 		return None
 
 CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(restaurant, origins=['http//localhost:3000'], supports_credentials=True)
+CORS(restaurant, origins=['http://localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(user)
 app.register_blueprint(restaurant)
@@ -49,5 +49,5 @@ def index():
 
 if __name__ == '__main__':
 	models.initialize()
-	app.run(debug=DEBUG, port= PORT)
+	app.run(debug=DEBUG, port=PORT)
 

@@ -49,17 +49,17 @@ def login():
 		return jsonify(data={}, status={"code": 401, "message": "Username or password is incorrect"})
 
 # Get user favorites
-# @user.route('<id>/restaurants', methods=["GET"])
-# def get_user_restaurants(id):
-# 	user = models.User.get_by_id(id)
-# 	print(user.restaurants, 'users restaurants')
+@user.route('<id>/restaurants', methods=["GET"])
+def get_user_restaurants(id):
+	user = models.User.get_by_id(id)
+	print(user.restaurants, 'users restaurants')
 
-# 	restaurants = [model_to_dict(restaurants) for restaurant in restaurant.user]
+	restaurants = [model_to_dict(restaurants) for restaurant in restaurant.user]
 
-# 	def delete_key(item, key):
-# 		restaurants_without_user = [delete_key(restaurants, 'user') for restaurants in restaurants]
+	def delete_key(item, key):
+		restaurants_without_user = [delete_key(restaurants, 'user') for restaurants in restaurants]
 
-# 		return jsonify(data=restaurants status={"code": 201, "message": "Success"})
+		return jsonify(data=restaurants, status={"code": 201, "message": "Success"})
 
 # Logout
 @user.route('/logout')
