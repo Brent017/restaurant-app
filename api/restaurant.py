@@ -18,12 +18,15 @@ def get_all_restaurants():
 # Create
 @restaurant.route('/', methods=["POST"])
 def create_restaurant():
+	print("HITTING CREATE")
+	user = current_user.get_id()
+	print(user, 'user in create')
 	payload = request.get_json()
 	print(payload, "payload in create")
 
-	restaurant = models.Restaurant.create(**payload)
+	restaurant = models.Restaurant.create(**payload, user=user)
 
-	print(restaurant.__dict__, 'looking at restaurant model')
+	# print(restaurant.__dict__, 'looking at restaurant model')
 
 	restaurant_dict = model_to_dict(restaurant)
 
