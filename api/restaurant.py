@@ -7,11 +7,13 @@ from playhouse.shortcuts import model_to_dict
 restaurant = Blueprint('restaurant', 'restaurant', url_prefix='/api/v1')
 
 # Index
-@restaurant.route('/', methods=["GET"])
-def get_all_restaurants():
+@restaurant.route('/<id>', methods=["GET"])
+def get_all_restaurants(id):
+	print("HITTING Index route")
+	print(id, "id in index")
 	try:
-		restaurants = [model_to_dict(restaurant) for restaurant in models.Restaurant.select()]
-		return jsonify(data=restaurants, status={"code": 200, "message": "Success"})
+		fav_restaurants = [model_to_dict(restaurant) for restaurant in models.Restaurant.select().where(models.Restaurant.user == id)]
+		return jsonify(data=fav_restaurants, status={"code": 200, "message": "Success"})
 	except modelsDoesNotExist:
 		return jsonify(data={}, status={"code": 401, "message": "There was an error gettig the resource"})
 
@@ -23,7 +25,7 @@ def create_restaurant():
 	print(user, 'user in create')
 	payload = request.get_json()
 	print(payload, "payload in create")
-
+	payload['restaurantId'] = payload['id']
 	restaurant = models.Restaurant.create(**payload, user=user)
 
 	# print(restaurant.__dict__, 'looking at restaurant model')
