@@ -1,3 +1,4 @@
+import os
 
 from flask import Flask, g
 from flask_cors import CORS
@@ -24,8 +25,8 @@ def load_user(userid):
 	except models.DoesNotExist:
 		return None
 
-CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(restaurant, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000', 'http://restaurant-app-react.herokuapp.com', 'https://restaurant-app-react.herokuapp.com'], supports_credentials=True)
+CORS(restaurant, origins=['http://localhost:3000', 'http://restaurant-app-react.herokuapp.com', 'https://restaurant-app-react.herokuapp.com'], supports_credentials=True)
 
 app.register_blueprint(user)
 app.register_blueprint(restaurant)
@@ -46,6 +47,10 @@ app.route('/')
 
 def index():
 	return 'Heeello'
+
+if 'ON_HEROKU' in os.environ:
+	print('HITTING')
+	models.initialize()
 
 if __name__ == '__main__':
 	models.initialize()
