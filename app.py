@@ -49,8 +49,8 @@ def index():
 	return 'Heeello'
 
 if 'ON_HEROKU' in os.environ:
-	print('HITTING')
-	models.initialize()
+    print('hitting ')
+    models.initialize()
 
 if __name__ == '__main__':
 	models.initialize()
