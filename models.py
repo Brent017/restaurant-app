@@ -3,8 +3,8 @@ from flask_login import UserMixin
 import os
 from playhouse.db_url import connect
 
-# DATABASE = SqliteDatabase('restaurants.sqlite')
-DATABASE = connect(os.environ.get('DATABASE_URL'))
+DATABASE = SqliteDatabase('restaurants.sqlite')
+# DATABASE = connect(os.environ.get('DATABASE_URL'))
 
 class User(UserMixin, Model):
 	username = CharField()
